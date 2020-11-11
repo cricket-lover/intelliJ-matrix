@@ -86,4 +86,46 @@ public class Matrix {
 
     return new Matrix(elements, this.numOfRows, other.numOfCols);
   }
+
+  private Matrix createSubMatrix(int mainColId) {
+    int[][] subElements = new int[this.numOfRows - 1][this.numOfCols - 1];
+
+    for (int row = 1; row < this.numOfRows; row++) {
+      for (int column = 0; column < mainColId; column++) {
+        subElements[row - 1][column] = this.elements[row][column];
+      }
+
+      for (int column = mainColId + 1; column < this.numOfCols; column++) {
+        subElements[row - 1][column - 1] = this.elements[row][column];
+      }
+    }
+
+    return new Matrix(subElements, this.numOfRows - 1, this.numOfCols - 1);
+  }
+
+
+  public int getDeterminant() {
+    if (this.numOfRows == 1) {
+      return this.elements[0][0];
+    }
+
+    if (this.numOfRows == 2) {
+      return (
+              (this.elements[0][0] * this.elements[1][1]) -
+                      (this.elements[0][1] * this.elements[1][0])
+      );
+    }
+
+    int determinant = 0;
+
+    for (int mainColId = 0; mainColId < this.numOfCols; mainColId++) {
+      Matrix subMatrix = createSubMatrix(mainColId);
+
+      int sign = (int) Math.pow(-1, mainColId);
+      determinant +=
+              sign * this.elements[0][mainColId] * subMatrix.getDeterminant();
+    }
+
+    return determinant;
+  }
 }

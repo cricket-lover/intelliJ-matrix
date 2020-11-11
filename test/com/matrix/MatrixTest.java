@@ -72,13 +72,13 @@ public class MatrixTest {
 
   @Test
   public void shouldSubtractTwoMatricesOfSameOrder() {
-    int[][] elements1 = { { 4, 8 }, { 12, 16 } };
+    int[][] elements1 = {{4, 8}, {12, 16}};
     Matrix matrix1 = new Matrix(elements1, 2, 2);
 
-    int[][] elements2 = { { 1, 2 }, { 3, 4 } };
+    int[][] elements2 = {{1, 2}, {3, 4}};
     Matrix matrix2 = new Matrix(elements2, 2, 2);
 
-    int[][] elements3 = { { 3, 6 }, { 9, 12 } };
+    int[][] elements3 = {{3, 6}, {9, 12}};
     Matrix expected = new Matrix(elements3, 2, 2);
 
     Matrix actual = matrix1.subtract(matrix2);
@@ -88,13 +88,13 @@ public class MatrixTest {
 
   @Test
   public void shouldMultiplyTwoMatrices() {
-    int[][] elements1 = { { 1, 2, 3 }, { 4, 5, 6 } };
+    int[][] elements1 = {{1, 2, 3}, {4, 5, 6}};
     Matrix matrix1 = new Matrix(elements1, 2, 3);
 
-    int[][] elements2 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
+    int[][] elements2 = {{7, 8}, {9, 10}, {11, 12}};
     Matrix matrix2 = new Matrix(elements2, 3, 2);
 
-    int[][] elements3 = { { 58, 64 }, { 139, 154 } };
+    int[][] elements3 = {{58, 64}, {139, 154}};
     Matrix expected = new Matrix(elements3, 2, 2);
 
     Matrix actual = matrix1.multiply(matrix2);
@@ -102,5 +102,21 @@ public class MatrixTest {
     assertEquals(expected, actual);
   }
 
+  @Test
+  public void shouldGiveDeterminantOfMatrix() {
+    int[][] elements1 = {{5}};
+    Matrix matrix1 = new Matrix(elements1, 1, 1);
 
+    assertEquals(matrix1.getDeterminant(), 5);
+
+    int[][] elements2 = {{1, 2}, {3, 4}};
+    Matrix matrix2 = new Matrix(elements2, 2, 2);
+
+    assertEquals(matrix2.getDeterminant(), -2);
+
+    int[][] elements3 = {{6, 1, 1}, {4, -2, 5}, {2, 8, 7}};
+    Matrix matrix3 = new Matrix(elements3, 3, 3);
+
+    assertEquals(matrix3.getDeterminant(), -306);
+  }
 }
