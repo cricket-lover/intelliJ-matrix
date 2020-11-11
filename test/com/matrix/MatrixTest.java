@@ -1,7 +1,9 @@
 package com.matrix;
 
 import org.junit.Test;
-import org.junit.Assert;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class MatrixTest {
     @Test
@@ -9,6 +11,48 @@ public class MatrixTest {
         int[][] elements1 = {{ 1, 2 }, { 3, 4 }};
         Matrix matrix1 = new Matrix(elements1, 2,2);
 
-        Assert.assertTrue(matrix1.equals(matrix1));
+        assertTrue(matrix1.equals(matrix1));
     }
+
+    @Test
+    public void shouldCheckIfTwoMatricesAreOfSameInstance() {
+        int[][] elements1 = { { 1, 2 }, { 3, 4 } };
+        Matrix matrix1 = new Matrix(elements1, 2, 2);
+
+        assertFalse(matrix1.equals(elements1));
+    }
+
+    @Test
+    public void shouldCheckIfTwoMatricesHaveSameDimensions() {
+        int[][] elements1 = { { 1, 2 }, { 3, 4 } };
+        Matrix matrix1 = new Matrix(elements1, 2, 2);
+
+        int[][] elements2 = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        Matrix matrix2 = new Matrix(elements2, 3, 3);
+
+        assertFalse(matrix1.equals(matrix2));
+    }
+
+    @Test
+    public void shouldNotEqualTwoMatricesWhenAtleastOneElementIsDifferent() {
+        int[][] elements1 = { { 1, 2 }, { 3, 4 } };
+        Matrix matrix1 = new Matrix(elements1, 2, 2);
+
+        int[][] elements2 = { { 1, 2 }, { 3, 5 } };
+        Matrix matrix2 = new Matrix(elements2, 2, 2);
+
+        assertFalse(matrix1.equals(matrix2));
+    }
+
+    @Test
+    public void shouldEqualTwoMatricesWhenAllElementsAreSame() {
+        int[][] elements1 = { { 1, 2 }, { 3, 4 } };
+        Matrix matrix1 = new Matrix(elements1, 2, 2);
+
+        int[][] elements2 = { { 1, 2 }, { 3, 4 } };
+        Matrix matrix2 = new Matrix(elements2, 2, 2);
+
+        assertTrue(matrix1.equals(matrix2));
+    }
+
 }
