@@ -2,8 +2,7 @@ package com.matrix;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MatrixTest {
     @Test
@@ -53,6 +52,22 @@ public class MatrixTest {
         Matrix matrix2 = new Matrix(elements2, 2, 2);
 
         assertTrue(matrix1.equals(matrix2));
+    }
+
+    @Test
+    public void shouldAddTwoMatricesOfSameOrder() {
+        int[][] elements1 = { { 1, 2 }, { 3, 4 } };
+        Matrix matrix1 = new Matrix(elements1, 2, 2);
+
+        int[][] elements2 = { { 2, 4 }, { 6, 8 } };
+        Matrix matrix2 = new Matrix(elements2, 2, 2);
+
+        int[][] elements3 = { { 3, 6 }, { 9, 12 } };
+        Matrix expected = new Matrix(elements3, 2, 2);
+
+        Matrix actual = matrix1.add(matrix2);
+
+        assertEquals(expected, actual);
     }
 
 }

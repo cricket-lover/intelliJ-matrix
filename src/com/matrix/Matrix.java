@@ -26,6 +26,7 @@ public class Matrix {
     if (areDimensionsNotEqual(another)) {
       return false;
     }
+
     return areElementsEqual(another);
   }
 
@@ -43,5 +44,18 @@ public class Matrix {
     }
 
     return true;
+  }
+
+  public Matrix add(Matrix other) {
+    int[][] elements = new int[this.numOfRows][this.numOfCols];
+
+    for (int row = 0; row < this.numOfRows; row++) {
+      for (int column = 0; column < this.numOfCols; column++) {
+        int sum = this.elements[row][column] + other.elements[row][column];
+        elements[row][column] = sum;
+      }
+    }
+
+    return new Matrix(elements, this.numOfRows, this.numOfCols);
   }
 }
