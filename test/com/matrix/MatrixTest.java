@@ -86,4 +86,21 @@ public class MatrixTest {
     assertEquals(expected, actual);
   }
 
+  @Test
+  public void shouldMultiplyTwoMatrices() {
+    int[][] elements1 = { { 1, 2, 3 }, { 4, 5, 6 } };
+    Matrix matrix1 = new Matrix(elements1, 2, 3);
+
+    int[][] elements2 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
+    Matrix matrix2 = new Matrix(elements2, 3, 2);
+
+    int[][] elements3 = { { 58, 64 }, { 139, 154 } };
+    Matrix expected = new Matrix(elements3, 2, 2);
+
+    Matrix actual = matrix1.multiply(matrix2);
+
+    assertEquals(expected, actual);
+  }
+
+
 }

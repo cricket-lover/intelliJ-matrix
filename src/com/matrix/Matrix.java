@@ -71,4 +71,19 @@ public class Matrix {
 
     return new Matrix(elements, this.numOfRows, this.numOfCols);
   }
+
+  public Matrix multiply(Matrix other) {
+    int[][] elements = new int[this.numOfRows][other.numOfCols];
+
+    for (int row = 0; row < this.numOfRows; row++) {
+      for (int col = 0; col < other.numOfCols; col++) {
+        for (int index = 0; index < this.numOfCols; index++) {
+          int product = this.elements[row][index] * other.elements[index][col];
+          elements[row][col] += product;
+        }
+      }
+    }
+
+    return new Matrix(elements, this.numOfRows, other.numOfCols);
+  }
 }
