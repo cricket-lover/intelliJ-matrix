@@ -58,4 +58,17 @@ public class Matrix {
 
     return new Matrix(elements, this.numOfRows, this.numOfCols);
   }
+
+  public Matrix subtract(Matrix other) {
+    int[][] elements = new int[this.numOfRows][this.numOfCols];
+
+    for (int row = 0; row < this.numOfRows; row++) {
+      for (int column = 0; column < this.numOfCols; column++) {
+        int diff = this.elements[row][column] - other.elements[row][column];
+        elements[row][column] = diff;
+      }
+    }
+
+    return new Matrix(elements, this.numOfRows, this.numOfCols);
+  }
 }
