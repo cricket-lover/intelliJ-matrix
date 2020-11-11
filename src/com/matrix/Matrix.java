@@ -51,8 +51,7 @@ public class Matrix {
 
     for (int row = 0; row < this.numOfRows; row++) {
       for (int column = 0; column < this.numOfCols; column++) {
-        int sum = this.elements[row][column] + other.elements[row][column];
-        elements[row][column] = sum;
+        elements[row][column] = this.elements[row][column] + other.elements[row][column];
       }
     }
 
@@ -64,8 +63,7 @@ public class Matrix {
 
     for (int row = 0; row < this.numOfRows; row++) {
       for (int column = 0; column < this.numOfCols; column++) {
-        int diff = this.elements[row][column] - other.elements[row][column];
-        elements[row][column] = diff;
+        elements[row][column] = this.elements[row][column] - other.elements[row][column];
       }
     }
 
@@ -78,8 +76,7 @@ public class Matrix {
     for (int row = 0; row < this.numOfRows; row++) {
       for (int col = 0; col < other.numOfCols; col++) {
         for (int index = 0; index < this.numOfCols; index++) {
-          int product = this.elements[row][index] * other.elements[index][col];
-          elements[row][col] += product;
+          elements[row][col] += this.elements[row][index] * other.elements[index][col];
         }
       }
     }
@@ -110,10 +107,7 @@ public class Matrix {
     }
 
     if (this.numOfRows == 2) {
-      return (
-              (this.elements[0][0] * this.elements[1][1]) -
-                      (this.elements[0][1] * this.elements[1][0])
-      );
+      return (this.elements[0][0] * this.elements[1][1]) - (this.elements[0][1] * this.elements[1][0]);
     }
 
     int determinant = 0;
@@ -122,8 +116,7 @@ public class Matrix {
       Matrix subMatrix = createSubMatrix(mainColId);
 
       int sign = (int) Math.pow(-1, mainColId);
-      determinant +=
-              sign * this.elements[0][mainColId] * subMatrix.getDeterminant();
+      determinant += sign * this.elements[0][mainColId] * subMatrix.getDeterminant();
     }
 
     return determinant;
